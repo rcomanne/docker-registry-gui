@@ -1,10 +1,10 @@
 import {ListGroup} from "react-bootstrap";
 
-export default function RepositoryListItem(props) {
+export default function TagListItem(props) {
 
     return(
-        <ListGroup.Item action href={`/repositories/${props.repository}`} className="my-1">
-            {props.repository}
+        <ListGroup.Item action href={`/repositories/${props.repository}/manifests/${props.tag}`} className="my-1" variant="dark">
+            {props.tag}
         </ListGroup.Item>
     )
 }

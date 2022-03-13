@@ -1,3 +1,3 @@
-var Configs = {
-    BASE_URL: "http://localhost:8080"
+var Configuration = {
+    REGISTRY_URL: "https://docker.rcomanne.nl"
 }

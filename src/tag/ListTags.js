@@ -1,25 +1,29 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {Container, ListGroup} from "react-bootstrap";
-import {listTags} from "../DockerClient";
+import {Container, ListGroup, Row} from "react-bootstrap";
+import {listTags} from "../client/DockerClient";
+import TagListItem from "./TagListItem";
 
 export default function ListTags() {
     let params = useParams();
     const [tags, setTags] = useState([]);
 
     useEffect(() => {
-        listTags(params.name).then(response => {
-            console.log(response);
-            setTags(response.tags)
+        listTags(params.repository).then(response => {
+            setTags(response.tags.sort())
         })
-    }, [params.name]);
+    }, [params.repository]);
 
-    return(
+    return (
         <Container>
-            <ListGroup variant="flush">
-                {tags.map((tag) => console.log(tag))}
-            </ListGroup>
-
+            <Row className="my-2">
+                <h1>{params.repository}</h1>
+            </Row>
+            <Row  className="my-2">
+                <ListGroup>
+                    {tags.map((tag) => <TagListItem key={tag} repository={params.repository} tag={tag}/>)}
+                </ListGroup>
+            </Row>
         </Container>
     )
 }
