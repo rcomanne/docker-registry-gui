@@ -2,7 +2,7 @@ html, #root {
   background-color: black;
 }
 
-h1,h2,p {
+h1,h2,h3,h4,h5,p {
   /*color: rgba(255, 255, 255, 0.55);*/
   color: white;
 }
