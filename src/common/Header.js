@@ -1,5 +1,5 @@
 import {Nav, Navbar} from "react-bootstrap";
-import {isLoggedIn} from "../login/LoginHelper";
+import {isLoggedIn} from "../authentication/AuthHelper";
 
 export default function Header() {
 

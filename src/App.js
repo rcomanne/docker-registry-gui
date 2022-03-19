@@ -5,9 +5,9 @@ import ListRepositories from "./repository/ListRepositories";
 import ListTags from "./tag/ListTags";
 import ManifestView from "./manifest/ManifestView";
 import Header from "./common/Header";
-import LoginView from "./login/LoginView";
-import Logout from "./login/Logout";
-import {isLoggedIn} from "./login/LoginHelper";
+import LoginView from "./authentication/LoginView";
+import LogoutView from "./authentication/LogoutView";
+import {isLoggedIn} from "./authentication/AuthHelper";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
                 <Routes>
                     {homeRoute}
                     <Route path="/login" element={<LoginView/>}/>
-                    <Route path="/logout" element={<Logout/>}/>
+                    <Route path="/logout" element={<LogoutView/>}/>
                     <Route path="repositories" element={<ListRepositories/>}/>
                     <Route path="repositories/:repository" element={<ListTags/>}/>
                     <Route path="repositories/:repository/manifests/:tag" element={<ManifestView/>}/>

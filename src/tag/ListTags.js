@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {Col, Container, Form, ListGroup, Row} from "react-bootstrap";
 import {listTags} from "../client/DockerClient";
 import TagListItem from "./TagListItem";
+import {isLoggedIn} from "../authentication/AuthHelper";
 
 export default function ListTags() {
     let params = useParams();
@@ -10,19 +11,22 @@ export default function ListTags() {
     const [tags, setTags] = useState([]);
     const [filteredTags, setFilteredTags] = useState([]);
 
-    const collator = new Intl.Collator([], {numeric: true});
-
     useEffect(() => {
-        listTags(params.repository).then(response => {
-            setTags(response.tags)
-            setFilteredTags(response.tags)
-        })
+        if (isLoggedIn()) {
+            listTags(params.repository).then(response => {
+                setTags(response.tags)
+                setFilteredTags(response.tags)
+            })
+        } else {
+            window.location.href = '/login';
+        }
     }, [params.repository]);
 
     useEffect(() => {
         let results = tags.filter(r => {
             return r.toLowerCase().includes(search.toLowerCase());
         });
+        const collator = new Intl.Collator([], {numeric: true});
         setFilteredTags(results.sort((a, b) => collator.compare(a, b)));
 
     }, [tags, search])

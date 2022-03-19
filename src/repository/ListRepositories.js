@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Col, Container, Form, ListGroup, Row} from "react-bootstrap";
 import RepositoryListItem from "./RepositoryListItem";
 import {listRepositories} from "../client/DockerClient";
-import {isLoggedIn} from "../login/LoginHelper";
+import {isLoggedIn} from "../authentication/AuthHelper";
 
 
 export default function ListRepositories() {
